@@ -1,0 +1,19 @@
+{
+  "name": "mongy",
+  "version": "0.0.0",
+  "description": "Simple MongoDB driver wrapper.",
+  "main": "index.js",
+  "repository": "https://github.com/dusansimic/mongy.git",
+  "author": "Dušan Simić <dusan.simic1810@gmail.com> (http://dusansimic.cf)",
+  "license": "MIT",
+  "dependencies": {
+    "mongodb": "^3"
+  },
+  "devDependencies": {
+    "ava": "^0.24.0",
+    "xo": "^0.18.2"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  }
+}
