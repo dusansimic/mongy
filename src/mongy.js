@@ -66,7 +66,7 @@ Mongy.prototype.disconnect = function () {
 	});
 };
 
-Mongy.prototype.find = function (query) {
+Mongy.prototype.find = function (query, projection) {
 	return new Promise(async (resolve, reject) => {
 		if (!this.client) {
 			return reject(new Error('Not connected to any server!'));
@@ -78,7 +78,7 @@ Mongy.prototype.find = function (query) {
 			return reject(new Error('No collection was selected!'));
 		}
 
-		await this.collection.find(query).toArray((err, docs) => {
+		await this.collection.find(query, projection).toArray((err, docs) => {
 			if (err) {
 				return reject(err);
 			}
@@ -88,7 +88,7 @@ Mongy.prototype.find = function (query) {
 	});
 };
 
-Mongy.prototype.insert = function (data, options) {
+Mongy.prototype.insert = function (data) {
 	return new Promise(async (resolve, reject) => {
 		if (!this.client) {
 			return reject(new Error('Not connected to any server!'));
@@ -100,7 +100,7 @@ Mongy.prototype.insert = function (data, options) {
 			return reject(new Error('No collection was selected!'));
 		}
 
-		if (options && options.many) {
+		if (Array.isArray(data)) {
 			await this.collection.insertMany(data, (err, res) => {
 				if (err) {
 					return reject(err);
@@ -165,7 +165,7 @@ Mongy.prototype.update = function (query, data, options) {
 		}
 
 		if (options && options.many) {
-			this.collection.updateMany(query, data, (err, res) => {
+			this.collection.updateMany(query, {$set: data}, (err, res) => {
 				if (err) {
 					return reject(err);
 				}
@@ -173,7 +173,7 @@ Mongy.prototype.update = function (query, data, options) {
 				resolve(res);
 			});
 		} else {
-			this.collection.updateOne(query, data, (err, res) => {
+			this.collection.updateOne(query, {$set: data}, (err, res) => {
 				if (err) {
 					return reject(err);
 				}
