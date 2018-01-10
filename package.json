@@ -1,5 +1,5 @@
 {
-  "name": "mongy",
+  "name": "@dusansimic/mongy",
   "version": "0.0.0",
   "description": "Simple MongoDB driver wrapper.",
   "main": "index.js",
