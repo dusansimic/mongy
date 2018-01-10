@@ -1,6 +1,6 @@
 {
   "name": "@dusansimic/mongy",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Simple MongoDB driver wrapper.",
   "main": "index.js",
   "repository": "https://github.com/dusansimic/mongy.git",
