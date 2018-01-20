@@ -11,6 +11,10 @@ test.serial('Mongy is a class', t => {
 	t.notThrows(() => new Mongy());
 });
 
+test.serial('Constructor test', t => {
+	t.notThrows(() => new Mongy(dbUrl, dbName, collectionName));
+});
+
 test.serial('Connect/Disconnect test', async t => {
 	const mongy = new Mongy();
 	await t.notThrows(mongy.connect(dbUrl));

@@ -2,11 +2,22 @@
 
 const MongoClient = require('mongodb').MongoClient;
 
-const Mongy = function () {
-	this.client = undefined;
-	this.db = undefined;
-	this.collection = undefined;
-	return this;
+const Mongy = function (url, databaseName, collectionName) {
+	(async () => {
+		if (url) {
+			await this.connect(url);
+			if (databaseName) {
+				await this.selectDatabase(databaseName);
+				if (collectionName) {
+					await this.selectDatabase(collectionName);
+				}
+			}
+		}
+		this.client = undefined;
+		this.db = undefined;
+		this.collection = undefined;
+		return this;
+	})();
 };
 
 Mongy.prototype.connect = function (url) {

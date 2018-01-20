@@ -19,6 +19,12 @@ const Mongy = require('mongy');
 const mongy = new Mongy();
 ```
 
+### Connect with constructor
+```js
+const Mongy = require('mongy');
+const mongy = new Mongy('mongodb://localhost:27017', 'testdb', 'testcollection');
+```
+
 ### Connect example
 ```js
 mongy.connect('mongodb://localhost:27017');
