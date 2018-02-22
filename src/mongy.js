@@ -1,7 +1,11 @@
-'use strict';
-
 const MongoClient = require('mongodb').MongoClient;
 
+/**
+ * MongoDB wrapper
+ * @param {String} [url] Url of the database
+ * @param {String} [databaseName] Database name
+ * @param {String} [collectionName] Collection name
+ */
 const Mongy = function (url, databaseName, collectionName) {
 	(async () => {
 		if (url) {
@@ -20,6 +24,10 @@ const Mongy = function (url, databaseName, collectionName) {
 	})();
 };
 
+/**
+ * Connect to database
+ * @param {String} url Url of the database
+ */
 Mongy.prototype.connect = function (url) {
 	return new Promise(async (resolve, reject) => {
 		await MongoClient.connect(url, (err, client) => {
@@ -33,6 +41,10 @@ Mongy.prototype.connect = function (url) {
 	});
 };
 
+/**
+ * Select a database
+ * @param {String} databaseName Database name
+ */
 Mongy.prototype.selectDatabase = function (databaseName) {
 	return new Promise(async (resolve, reject) => {
 		if (!this.client) {
@@ -44,6 +56,10 @@ Mongy.prototype.selectDatabase = function (databaseName) {
 	});
 };
 
+/**
+ * Select a collection
+ * @param {String} collectionName Collection name
+ */
 Mongy.prototype.selectCollection = function (collectionName) {
 	return new Promise(async (resolve, reject) => {
 		if (!this.client) {
@@ -63,6 +79,9 @@ Mongy.prototype.selectCollection = function (collectionName) {
 	});
 };
 
+/**
+ * Disconnect / close connection
+ */
 Mongy.prototype.disconnect = function () {
 	return new Promise(async (resolve, reject) => {
 		if (!this.client) {
@@ -77,6 +96,11 @@ Mongy.prototype.disconnect = function () {
 	});
 };
 
+/**
+ * Find document in collection
+ * @param {Object} query Query object
+ * @param {Object} [projection] Projection object
+ */
 Mongy.prototype.find = function (query, projection) {
 	return new Promise(async (resolve, reject) => {
 		if (!this.client) {
@@ -99,6 +123,10 @@ Mongy.prototype.find = function (query, projection) {
 	});
 };
 
+/**
+ * Insert data into collection
+ * @param {Object} data Data object
+ */
 Mongy.prototype.insert = function (data) {
 	return new Promise(async (resolve, reject) => {
 		if (!this.client) {
@@ -131,6 +159,12 @@ Mongy.prototype.insert = function (data) {
 	});
 };
 
+/**
+ * Remove document from collection
+ * @param {Object} query Query object
+ * @param {Object} [options] Options object
+ * @param {Boolean} [options.many] Apply query on multiple documents
+ */
 Mongy.prototype.delete = function (query, options) {
 	return new Promise(async (resolve, reject) => {
 		if (!this.client) {
@@ -163,6 +197,13 @@ Mongy.prototype.delete = function (query, options) {
 	});
 };
 
+/**
+ * Update document in collection
+ * @param {Object} query Query object
+ * @param {Object} data Data object
+ * @param {Object} [options] Options object
+ * @param {String} [options.many] Apply query on multiple documents
+ */
 Mongy.prototype.update = function (query, data, options) {
 	return new Promise(async (resolve, reject) => {
 		if (!this.client) {
