@@ -27,6 +27,7 @@ const Mongy = function (url, databaseName, collectionName) {
 /**
  * Connect to database
  * @param {String} url Url of the database
+ * @returns {Promise}
  */
 Mongy.prototype.connect = function (url) {
 	return new Promise(async (resolve, reject) => {
@@ -44,6 +45,7 @@ Mongy.prototype.connect = function (url) {
 /**
  * Select a database
  * @param {String} databaseName Database name
+ * @returns {Promise}
  */
 Mongy.prototype.selectDatabase = function (databaseName) {
 	return new Promise(async (resolve, reject) => {
@@ -59,6 +61,7 @@ Mongy.prototype.selectDatabase = function (databaseName) {
 /**
  * Select a collection
  * @param {String} collectionName Collection name
+ * @returns {Promise}
  */
 Mongy.prototype.selectCollection = function (collectionName) {
 	return new Promise(async (resolve, reject) => {
@@ -81,6 +84,7 @@ Mongy.prototype.selectCollection = function (collectionName) {
 
 /**
  * Disconnect / close connection
+ * @returns {Promise}
  */
 Mongy.prototype.disconnect = function () {
 	return new Promise(async (resolve, reject) => {
@@ -100,6 +104,7 @@ Mongy.prototype.disconnect = function () {
  * Find document in collection
  * @param {Object} query Query object
  * @param {Object} [projection] Projection object
+ * @returns {Promise}
  */
 Mongy.prototype.find = function (query, projection) {
 	return new Promise(async (resolve, reject) => {
@@ -126,6 +131,7 @@ Mongy.prototype.find = function (query, projection) {
 /**
  * Insert data into collection
  * @param {Object} data Data object
+ * @returns {Promise}
  */
 Mongy.prototype.insert = function (data) {
 	return new Promise(async (resolve, reject) => {
@@ -164,6 +170,7 @@ Mongy.prototype.insert = function (data) {
  * @param {Object} query Query object
  * @param {Object} [options] Options object
  * @param {Boolean} [options.many] Apply query on multiple documents
+ * @returns {Promise}
  */
 Mongy.prototype.delete = function (query, options) {
 	return new Promise(async (resolve, reject) => {
@@ -203,6 +210,7 @@ Mongy.prototype.delete = function (query, options) {
  * @param {Object} data Data object
  * @param {Object} [options] Options object
  * @param {String} [options.many] Apply query on multiple documents
+ * @returns {Promise}
  */
 Mongy.prototype.update = function (query, data, options) {
 	return new Promise(async (resolve, reject) => {
